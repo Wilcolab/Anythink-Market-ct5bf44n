@@ -13,5 +13,5 @@ if [ ! -f "$1" ]; then
 fi
 
 # Use awk to print the first and last name fields for rows with email suffix amazon.com
-awk -F, 'tolower($4) ~ /amazon\.com$/ { print $2 " " $3 }' "$1
-"
+awk -F, 'tolower($4) ~ /amazon\.com$/ { print $2 " " $3 }' "$1"
+
