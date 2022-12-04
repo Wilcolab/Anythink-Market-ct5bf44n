@@ -6,12 +6,18 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-# Check if the file exists
+# Check if a file path for the output was passed as second argument
+if [ -z "$2" ]; then
+  echo "Please provide the path to the output file as second argument"
+  exit 1
+fi
+
+# Check if the input file exists
 if [ ! -f "$1" ]; then
   echo "File not found: $1"
   exit 1
 fi
 
 # Use awk to print the first and last name fields for rows with email suffix amazon.com
-awk -F, 'tolower($4) ~ /amazon\.com$/ { print $2 " " $3 }' "$1"
-
+# and redirect the output to the file specified as second argument
+awk -F, 'tolower($4) ~ /amazon\.com$/ { print $2 " " $3 }' "$1" > "$2"
